@@ -50,6 +50,7 @@ func (s *Advisory) DetectVulnerabilities(pkgName string, pkgVer *semver.Version)
 			PkgName:          pkgName,
 			InstalledVersion: pkgVer.String(),
 			FixedVersion:     s.createFixedVersions(advisory),
+			URL:              fmt.Sprintf("https://avd.aquasec.com/nvd/%s", strings.ToLower(advisory.VulnerabilityID)),
 		}
 		vulns = append(vulns, vuln)
 	}
