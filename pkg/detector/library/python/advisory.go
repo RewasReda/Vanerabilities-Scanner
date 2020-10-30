@@ -16,14 +16,14 @@ type Advisory struct {
 	vs python.VulnSrc
 }
 
-// NewAdvisory is the factory method to reutrn Python Advisory
+// NewAdvisory is the factory method to return Python Advisory
 func NewAdvisory() *Advisory {
 	return &Advisory{
 		vs: python.NewVulnSrc(),
 	}
 }
 
-// DetectVulnerabilities scans and returns pythin vulnerabilities
+// DetectVulnerabilities scans and returns python vulnerabilities
 func (s *Advisory) DetectVulnerabilities(pkgName string, pkgVer *semver.Version) ([]types.DetectedVulnerability, error) {
 	advisories, err := s.vs.Get(pkgName)
 	if err != nil {

@@ -45,12 +45,17 @@ func (s *Advisory) DetectVulnerabilities(pkgName string, pkgVer *semver.Version)
 			continue
 		}
 
+		var avdURL string
+		if strings.Contains(strings.ToLower(advisory.VulnerabilityID), "cve") {
+			avdURL = fmt.Sprintf("https://avd.aquasec.com/nvd/%s", strings.ToLower(advisory.VulnerabilityID))
+		}
+
 		vuln := types.DetectedVulnerability{
 			VulnerabilityID:  advisory.VulnerabilityID,
 			PkgName:          pkgName,
 			InstalledVersion: pkgVer.String(),
 			FixedVersion:     s.createFixedVersions(advisory),
-			URL:              fmt.Sprintf("https://avd.aquasec.com/nvd/%s", strings.ToLower(advisory.VulnerabilityID)),
+			URL:              avdURL,
 		}
 		vulns = append(vulns, vuln)
 	}
