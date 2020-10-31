@@ -1,10 +1,9 @@
-package main
+package scan
 
 import "fmt"
-import ("github.com/RewasReda/Vanerabilities-Scanner")
-
 
 func main() {
 	fmt.Println("Hello!")
+	scan(mongo)
 
 }
